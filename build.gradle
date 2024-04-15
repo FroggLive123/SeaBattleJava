@@ -23,8 +23,9 @@ dependencies {
     def gdxVersion = '1.12.1'
 
     implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
     implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
-    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
 
     compileOnly "org.projectlombok:lombok:1.18.32"
 }
