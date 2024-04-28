@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import io.wetalfrogggroup.game.see_battle.util.ScreenSelector;
 
@@ -16,7 +16,7 @@ public class MainMenuScreen implements Screen {
     private final SpriteBatch spriteBatch;
     private final BitmapFont bitmapFont;
 
-    private TextButton openGameScreen;
+    private Button openGameScreenButton;
 
     public MainMenuScreen(
             final ScreenSelector screenSelector,
@@ -32,22 +32,18 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void show() {
-        var style = new TextButton.TextButtonStyle(null, null, null, bitmapFont);
-        openGameScreen = new TextButton("Open game screen", style);
-        openGameScreen.addListener(new ClickListener() {
+        openGameScreenButton.addListener(new ClickListener() {
             @Override
             public void clicked(final InputEvent event, final float x, final float y) {
                 screenSelector.accept(new GameScreen(screenSelector, stage, spriteBatch, bitmapFont));
             }
         });
-
-        openGameScreen.setPosition(400, 200);
-        stage.addActor(openGameScreen);
+        stage.addActor(openGameScreenButton);
     }
 
     @Override
     public void render(final float delta) {
-        openGameScreen.draw(spriteBatch, 1f);
+        openGameScreenButton.draw(spriteBatch, 1f);
     }
 
     @Override
