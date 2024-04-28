@@ -1,0 +1,26 @@
+ui_elements.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+button_up
+  rotate: false
+  xy: 2, 2
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+button_down
+  rotate: false
+  xy: 104, 2
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+icon_close
+  rotate: false
+  xy: 2, 54
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

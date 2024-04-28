@@ -1,6 +1,8 @@
 package io.wetalfrogggroup.game.see_battle.scene;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -13,11 +15,11 @@ public class GameScreen implements Screen {
     private final ScreenSelector screenSelector;
     private final Stage stage;
     private final SpriteBatch spriteBatch;
-    private final BitmapFont bitmapFont;
+    private BitmapFont bitmapFont;
 
     @Override
     public void show() {
-
+        bitmapFont = new BitmapFont();
     }
 
     @Override

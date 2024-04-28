@@ -27,7 +27,7 @@ public class GameGame extends Game {
         spriteBatch = new SpriteBatch();
         bitmapFont = new BitmapFont();
 
-        this.setScreen(new MainMenuScreen(this::setScreen, stage, spriteBatch, bitmapFont));
+        this.setScreen(new MainMenuScreen(this::setScreen, stage, spriteBatch));
     }
 
     @Override
