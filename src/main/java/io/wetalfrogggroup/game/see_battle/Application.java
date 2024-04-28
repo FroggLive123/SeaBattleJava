@@ -16,17 +16,18 @@ class Application {
         final CloseableRegister cr = CloseableRegister.getInstance();
 
         try {
-            new FirebaseApplication();
-            var hp = new HealthPub(new FirestoreConnection());
-            cr.register(hp);
-            hp.start();
+            //todo: uncomment this block to enable online mode
+//            new FirebaseApplication();
+//            var hp = new HealthPub(new FirestoreConnection());
+//            cr.register(hp);
+//            hp.start();
 
             Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
             config.setTitle("Sea Battle");
             config.setWindowedMode(800, 400);
             config.useVsync(true);
             config.setForegroundFPS(60);
-            new Lwjgl3Application(new Game(), config);
+            new Lwjgl3Application(new GameGame(), config);
         } catch (Exception e) {
             e.printStackTrace();
         }
