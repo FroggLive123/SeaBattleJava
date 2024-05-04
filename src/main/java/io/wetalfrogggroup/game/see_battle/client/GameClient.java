@@ -8,6 +8,7 @@ import io.wetalfrogggroup.game.see_battle.model.Session;
 import lombok.SneakyThrows;
 
 import java.security.MessageDigest;
+import java.time.Duration;
 import java.util.HexFormat;
 import java.util.Map;
 import java.util.Optional;
@@ -16,7 +17,7 @@ import java.util.UUID;
 public class GameClient {
 
     private static final String SESSION_COLLECTION = "session";
-    private static final int SESSION_TIMEOUT = 1000 * 60 * 20;
+    private static final Duration SESSION_TIMEOUT = Duration.ofHours(1);
 
     private static GameClient instance;
 
@@ -43,7 +44,7 @@ public class GameClient {
                 continue;
             }
 
-            if (doc.get().getTimestamp() + SESSION_TIMEOUT < System.currentTimeMillis()) {
+            if (doc.get().getTimestamp() + SESSION_TIMEOUT.toMillis() < System.currentTimeMillis()) {
                 d.delete();
                 continue;
             }
