@@ -1,14 +1,13 @@
 package io.wetalfrogggroup.game.see_battle.online;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import java.io.Closeable;
 import java.io.IOException;
 
 /**
  * Publisher health status
- * */
+ */
 @RequiredArgsConstructor
 public class HealthPub implements Closeable {
 
@@ -17,7 +16,7 @@ public class HealthPub implements Closeable {
 
     public HealthPub(final FirestoreConnection conn) {
         this.conn = conn;
-        this.thread =  new Thread(() -> {
+        this.thread = new Thread(() -> {
             while (!Thread.interrupted()) {
                 pub();
                 try {

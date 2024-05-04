@@ -12,19 +12,17 @@ import java.util.function.Consumer;
 public class ScreenSelector {
 
     private static ScreenSelector instance;
+    private final Map<String, Screen> screens = new HashMap<>();
+    private final List<Consumer<Screen>> changeScreenListeners = new ArrayList<>();
+    private ScreenSelector() {
+
+    }
 
     public static ScreenSelector getInstance() {
         if (instance == null) {
             instance = new ScreenSelector();
         }
         return instance;
-    }
-
-    private final Map<String, Screen> screens = new HashMap<>();
-    private final List<Consumer<Screen>> changeScreenListeners = new ArrayList<>();
-
-    private ScreenSelector() {
-
     }
 
     public void add(final String name, final Screen screen) {

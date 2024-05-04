@@ -8,6 +8,7 @@ import java.util.Set;
 public class CloseableRegister implements Closeable {
 
     private static CloseableRegister instance;
+    private final Set<Closeable> set = new LinkedHashSet<>();
 
     public static CloseableRegister getInstance() {
         if (instance == null) {
@@ -15,8 +16,6 @@ public class CloseableRegister implements Closeable {
         }
         return instance;
     }
-
-    private final Set<Closeable> set = new LinkedHashSet<>();
 
     public void register(final Closeable c) {
         set.add(c);

@@ -1,37 +1,27 @@
 package io.wetalfrogggroup.game.see_battle.scene;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.ScreenUtils;
 import io.wetalfrogggroup.game.see_battle.util.ScreenSelector;
 import lombok.RequiredArgsConstructor;
-import org.w3c.dom.Text;
 
 @RequiredArgsConstructor
-public class MainMenuScreen implements Screen {
+public class MainMenuScreen extends BasicScreen {
 
-    private final Stage stage;
     private final Skin atlas;
 
-    private Button openGameScreenButton;
     private BitmapFont bitmapFont;
 
     public MainMenuScreen() {
-        this.stage = new Stage();
-
         this.atlas = new Skin();
         atlas.add("button_up", new Texture(Gdx.files.classpath("assets/button_up.png")));
         atlas.add("button_down", new Texture(Gdx.files.classpath("assets/button_down.png")));
@@ -68,7 +58,7 @@ public class MainMenuScreen implements Screen {
         findGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(final InputEvent event, final float x, final float y) {
-                ScreenSelector.getInstance().choose("game");
+                ScreenSelector.getInstance().choose("search-session");
             }
         });
 
@@ -103,38 +93,5 @@ public class MainMenuScreen implements Screen {
         });
 
         buttonsGroup.addActor(exitButton);
-    }
-
-    @Override
-    public void render(final float delta) {
-        ScreenUtils.clear(Color.BLACK);
-
-        stage.act();
-        stage.draw();
-    }
-
-    @Override
-    public void resize(final int width, final int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
     }
 }
