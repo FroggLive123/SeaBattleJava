@@ -4,13 +4,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import io.wetalfrogggroup.game.see_battle.model.Session;
 
 public class GameScreen extends BasicScreen {
 
-    private final String sessionKey;
+    private final Session session;
 
-    public GameScreen(final String sessionKey) {
-        this.sessionKey = sessionKey;
+    public GameScreen(final Session session) {
+        this.session = session;
     }
 
     @Override
