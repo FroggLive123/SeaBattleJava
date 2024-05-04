@@ -29,21 +29,24 @@ public class SearchSessionScreen extends BasicScreen {
         var client = GameClient.getInstance();
         var session = client.findFirst();
         if (session.isPresent()) {
+            System.out.println("Session found");
             open(session.get());
             return;
         }
 
-        var s = client.openSession();
-        while (!client.hasPlayer(s)) {
-            try {
-                Thread.sleep(2500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        new Thread(() -> {
+            var s = client.openSession();
+            while (!client.hasPlayer(s)) {
+                System.out.println("Waiting for player...");
+                try {
+                    Thread.sleep(2500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        }
-        if (client.hasPlayer(s)) {
+
             open(s);
-        }
+        }).start();
     }
 
     private void open(final Session session) {
