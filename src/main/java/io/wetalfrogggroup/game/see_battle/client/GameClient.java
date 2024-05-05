@@ -110,4 +110,10 @@ public class GameClient {
 
         return doc.getPlayer2Id() != null;
     }
+
+    public void closeSession(final Session session) {
+        System.out.printf("Close session %s\n", session.key());
+        var c = client.collection(SESSION_COLLECTION);
+        c.document(session.key()).delete();
+    }
 }

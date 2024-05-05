@@ -58,6 +58,7 @@ public class MainMenuScreen extends BasicScreen {
         findGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(final InputEvent event, final float x, final float y) {
+                System.out.println("Open search session screen");
                 ScreenSelector.getInstance().choose("search-session");
             }
         });
@@ -93,5 +94,12 @@ public class MainMenuScreen extends BasicScreen {
         });
 
         buttonsGroup.addActor(exitButton);
+        System.out.println("End of show main menu screen");
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        atlas.dispose();
     }
 }

@@ -49,6 +49,6 @@ public abstract class BasicScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }

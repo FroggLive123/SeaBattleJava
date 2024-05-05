@@ -26,6 +26,9 @@ public class GameGame extends Game {
         if (screen == null) {
             return;
         }
+        if (this.getScreen() != null) {
+            this.getScreen().dispose();
+        }
         this.setScreen(screen);
     }
 }
