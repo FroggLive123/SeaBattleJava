@@ -2,6 +2,7 @@ package io.wetalfrogggroup.game.see_battle.client;
 
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.cloud.FirestoreClient;
+import io.wetalfrogggroup.game.see_battle.exception.SessionNotFoundException;
 import io.wetalfrogggroup.game.see_battle.firebase.document.SessionDocument;
 import io.wetalfrogggroup.game.see_battle.model.Session;
 import io.wetalfrogggroup.game.see_battle.model.User;
@@ -101,11 +102,11 @@ public class GameClient {
     }
 
     @SneakyThrows
-    public boolean hasPlayer(final Session session) {
+    public boolean hasPlayer(final Session session) throws SessionNotFoundException {
         var c = client.collection(SESSION_COLLECTION);
         var doc = c.document(session.key()).get().get().toObject(SessionDocument.class);
         if (doc == null) {
-            throw new IllegalStateException("Session not found");
+            throw new SessionNotFoundException(session.key());
         }
 
         return doc.getPlayer2Id() != null;

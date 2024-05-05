@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import io.wetalfrogggroup.game.see_battle.client.GameClient;
+import io.wetalfrogggroup.game.see_battle.exception.SessionNotFoundException;
 import io.wetalfrogggroup.game.see_battle.model.Session;
 import io.wetalfrogggroup.game.see_battle.util.ScreenSelector;
 
@@ -77,8 +78,21 @@ public class SearchSessionScreen extends BasicScreen {
         }
 
         new Thread(() -> {
+            var errCount = 0;
             var s = client.openSession();
-            while (!client.hasPlayer(s)) {
+            while (true) {
+                try {
+                    if (client.hasPlayer(s)) {
+                        break;
+                    }
+                } catch (SessionNotFoundException e) {
+                    if (errCount++ > 5) {
+                        System.err.printf("Session %s closed\n", s.key());
+                        return;
+                    }
+                    continue;
+                }
+
                 if (!isActive) {
                     client.closeSession(s);
                     return;
