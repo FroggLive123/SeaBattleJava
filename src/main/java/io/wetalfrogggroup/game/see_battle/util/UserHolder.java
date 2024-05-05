@@ -36,7 +36,7 @@ public class UserHolder {
         NetworkInterface ni = NetworkInterface.getByInetAddress(localHost);
         byte[] hardwareAddress = ni.getHardwareAddress();
 
-        // We hash the MAC address to avoid exposing it
+        // We hash the MAC address to avoid exposing it 
         var md = MessageDigest.getInstance("SHA1");
         md.update(hardwareAddress);
         return HexFormat.of().formatHex(md.digest());
