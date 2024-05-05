@@ -30,6 +30,7 @@ public class SearchSessionScreen extends BasicScreen {
         var session = client.findFirst();
         if (session.isPresent()) {
             System.out.println("Session found");
+            client.connectTo(session.get());
             open(session.get());
             return;
         }

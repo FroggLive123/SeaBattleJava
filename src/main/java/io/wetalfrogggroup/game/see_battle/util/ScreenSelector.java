@@ -29,6 +29,10 @@ public class ScreenSelector {
         screens.put(name, screen);
     }
 
+    public void remove(final String name) {
+        screens.remove(name);
+    }
+
     public void choose(final String name) {
         Screen screen = screens.get(name);
         if (screen == null) {
