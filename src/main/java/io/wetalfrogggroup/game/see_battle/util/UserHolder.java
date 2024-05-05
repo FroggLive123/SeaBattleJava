@@ -30,10 +30,13 @@ public class UserHolder {
 
     @SneakyThrows
     private String generateUserId() {
+        // We use MAC address as a unique identifier for the user
+        // MAC address are constant for each device
         InetAddress localHost = InetAddress.getLocalHost();
         NetworkInterface ni = NetworkInterface.getByInetAddress(localHost);
         byte[] hardwareAddress = ni.getHardwareAddress();
 
+        // We hash the MAC address to avoid exposing it
         var md = MessageDigest.getInstance("SHA1");
         md.update(hardwareAddress);
         return HexFormat.of().formatHex(md.digest());
