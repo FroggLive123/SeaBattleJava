@@ -11,7 +11,6 @@ class Application {
     @SneakyThrows
     public static void main(final String[] args) {
         Runtime.getRuntime().addShutdownHook(new Thread(Application::shutdown));
-        final CloseableRegister cr = CloseableRegister.getInstance();
 
         try {
             //todo: uncomment this block to enable online mode
