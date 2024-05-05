@@ -25,15 +25,18 @@ public class UserHolder {
 
     @SneakyThrows
     public UserHolder() {
+        user = new User(generateUserId(), String.valueOf(System.currentTimeMillis()));
+    }
+
+    @SneakyThrows
+    private String generateUserId() {
         InetAddress localHost = InetAddress.getLocalHost();
         NetworkInterface ni = NetworkInterface.getByInetAddress(localHost);
         byte[] hardwareAddress = ni.getHardwareAddress();
 
         var md = MessageDigest.getInstance("SHA1");
         md.update(hardwareAddress);
-        var id = HexFormat.of().formatHex(md.digest());
-
-        user = new User(id, String.valueOf(System.currentTimeMillis()));
+        return HexFormat.of().formatHex(md.digest());
     }
 
     public User getUser() {
