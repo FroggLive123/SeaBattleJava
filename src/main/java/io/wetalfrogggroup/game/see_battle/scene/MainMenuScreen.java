@@ -29,7 +29,9 @@ public class MainMenuScreen extends BasicScreen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(stage);
+        if (Gdx.input.getInputProcessor() != stage) {
+            Gdx.input.setInputProcessor(stage);
+        }
 
         var buttonsGroup = new Group();
         stage.addActor(buttonsGroup);
@@ -94,7 +96,6 @@ public class MainMenuScreen extends BasicScreen {
         });
 
         buttonsGroup.addActor(exitButton);
-        System.out.println("End of show main menu screen");
     }
 
     @Override

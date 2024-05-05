@@ -29,6 +29,8 @@ public class SearchSessionScreen extends BasicScreen {
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(stage);
+
         var group = new Group();
         stage.addActor(group);
 
