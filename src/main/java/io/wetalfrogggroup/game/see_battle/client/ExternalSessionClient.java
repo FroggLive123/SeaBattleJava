@@ -98,10 +98,8 @@ public class ExternalSessionClient implements SessionClient {
                     .get()
                     .toObject(SessionDocument.class));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
-
-        return Optional.empty();
     }
 
     private void update(final String id, final SessionDocument doc) {
