@@ -1,8 +1,11 @@
 package io.wetalfrogggroup.game.see_battle.firebase.document;
 
+import io.wetalfrogggroup.game.see_battle.model.ShipDocument;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -13,8 +16,12 @@ public class SessionDocument {
 
     private String player1Id;
     private String player1Name;
+    private List<ShipDocument> player1Ships;
+    private List<ShipDocument> player1Shots;
 
     private String player2Id;
     private String player2Name;
+    private List<ShipDocument> player2Ships;
+    private List<ShipDocument> player2Shots;
 
 }

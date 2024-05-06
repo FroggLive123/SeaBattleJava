@@ -8,13 +8,12 @@ import io.wetalfrogggroup.game.see_battle.model.Session;
 import io.wetalfrogggroup.game.see_battle.model.User;
 import io.wetalfrogggroup.game.see_battle.util.UserHolder;
 import lombok.SneakyThrows;
-import org.apache.http.impl.client.StandardHttpRequestRetryHandler;
 
 import java.security.MessageDigest;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.HexFormat;
 import java.util.Optional;
-import java.util.UUID;
 
 public class GameClient {
 
@@ -91,12 +90,16 @@ public class GameClient {
         var c = client.collection(SESSION_COLLECTION);
         var timestamp = System.currentTimeMillis();
         c.document(s.key()).create(new SessionDocument(
-                        timestamp,
-                        user.id(),
-                        user.name(),
-                        null,
-                        null
-                ));
+                timestamp,
+                user.id(),
+                user.name(),
+                Collections.emptyList(),
+                Collections.emptyList(),
+                null,
+                null,
+                Collections.emptyList(),
+                Collections.emptyList()
+        ));
 
         return s;
     }

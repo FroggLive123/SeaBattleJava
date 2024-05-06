@@ -18,6 +18,6 @@ public class SessionClientFactory {
     }
 
     public SessionClient build(final Session session) {
-        return new SessionClient(FirestoreClient.getFirestore(), session);
+        return new CachedSessionClient(new ExternalSessionClient(FirestoreClient.getFirestore(), session));
     }
 }

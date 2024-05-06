@@ -1,14 +1,20 @@
 package io.wetalfrogggroup.game.see_battle.client;
 
-import com.google.cloud.firestore.Firestore;
-import io.wetalfrogggroup.game.see_battle.model.Session;
-import lombok.RequiredArgsConstructor;
+import io.wetalfrogggroup.game.see_battle.model.Position;
+import io.wetalfrogggroup.game.see_battle.model.Ship;
+import io.wetalfrogggroup.game.see_battle.model.ShipDocument;
+import io.wetalfrogggroup.game.see_battle.model.User;
 
-@RequiredArgsConstructor
-public class SessionClient {
+import java.util.Collection;
+import java.util.List;
 
-    private final Firestore client;
-    private final Session session;
+public interface SessionClient {
 
+    List<ShipDocument> getShips(final User user);
 
+    void placeShip(final User user, final Ship type, final Position start, final boolean horizontal);
+
+    default boolean isReady(final User user) {
+        return getShips(user).size() == Ship.maxCount();
+    }
 }
