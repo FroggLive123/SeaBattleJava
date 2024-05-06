@@ -17,7 +17,6 @@ public class CachedSessionClient implements SessionClient {
     private final SessionClient delegate;
 
     private final Map<User, List<ShipDocument>> ships = new HashMap<>();
-    private final Map<User, List<Position>> shots = new HashMap<>();
 
     public CachedSessionClient(final SessionClient delegate) {
         this.delegate = delegate;
@@ -47,5 +46,20 @@ public class CachedSessionClient implements SessionClient {
 
         // if something went wrong, we always will have the latest data
         return delegate.getShips(user);
+    }
+
+    @Override
+    public void placeShip(final User user, final Ship type, final Position start, final boolean horizontal) {
+        delegate.placeShip(user, type, start, horizontal);
+    }
+
+    @Override
+    public List<Position> getShots(final User user) {
+        return delegate.getShots(user);
+    }
+
+    @Override
+    public void shot(final User user, final Position position) {
+        delegate.shot(user, position);
     }
 }

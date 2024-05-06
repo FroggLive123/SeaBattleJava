@@ -11,7 +11,6 @@ import io.wetalfrogggroup.game.see_battle.model.User;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
-import javax.swing.text.html.Option;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -55,10 +54,40 @@ public class ExternalSessionClient implements SessionClient {
             throw new IllegalAccessException("User is not part of the session");
         }
 
-        client.collection(SESSIONS_COLLECTION)
-                .document(session.key())
-                .set(o)
-                .get();
+        update(session.key(), o);
+    }
+
+    @SneakyThrows
+    @Override
+    public List<Position> getShots(final User user) {
+        var o = find(session.key()).orElseThrow(() -> new SessionNotFoundException(session.key()));
+
+        List<String> shots;
+        if (o.getPlayer1Id().equals(user.id())) {
+            shots = o.getPlayer1Shots();
+        } else if (o.getPlayer2Id().equals(user.id())) {
+            shots = o.getPlayer2Shots();
+        } else {
+            throw new IllegalAccessException("User is not part of the session");
+        }
+
+        return shots.stream().map(Position::decode).toList();
+    }
+
+    @SneakyThrows
+    @Override
+    public void shot(final User user, final Position position) {
+        var o = find(session.key()).orElseThrow(() -> new SessionNotFoundException(session.key()));
+
+        if (o.getPlayer1Id().equals(user.id())) {
+            o.getPlayer1Shots().add(position.encode());
+        } else if (o.getPlayer2Id().equals(user.id())) {
+            o.getPlayer2Shots().add(position.encode());
+        } else {
+            throw new IllegalAccessException("User is not part of the session");
+        }
+
+        update(session.key(), o);
     }
 
     private Optional<SessionDocument> find(final String id) {

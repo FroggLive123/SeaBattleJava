@@ -17,11 +17,11 @@ public class SessionDocument {
     private String player1Id;
     private String player1Name;
     private List<ShipDocument> player1Ships;
-    private List<ShipDocument> player1Shots;
+    private List<String> player1Shots;
 
     private String player2Id;
     private String player2Name;
     private List<ShipDocument> player2Ships;
-    private List<ShipDocument> player2Shots;
+    private List<String> player2Shots;
 
 }
